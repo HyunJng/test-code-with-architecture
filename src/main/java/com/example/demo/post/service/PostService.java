@@ -4,15 +4,11 @@ import com.example.demo.common.domain.ResourceNotFoundException;
 import com.example.demo.post.domain.Post;
 import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.domain.PostUpdate;
-import com.example.demo.post.infrastructure.PostEntity;
 import com.example.demo.post.service.port.PostRepository;
 import com.example.demo.user.domain.User;
-import com.example.demo.user.infrastructure.UserEntity;
 import com.example.demo.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.Clock;
 
 @Service
 @RequiredArgsConstructor
