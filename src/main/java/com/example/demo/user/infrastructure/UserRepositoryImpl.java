@@ -1,5 +1,6 @@
 package com.example.demo.user.infrastructure;
 
+import com.example.demo.common.domain.ResourceNotFoundException;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.service.port.UserRepository;
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class UserRepositoryImpl implements UserRepository {
 
     private final UserJpaRepository userJpaRepository;
+
 
     @Override
     public Optional<User> findByIdAndStatus(long id, UserStatus userStatus) {
@@ -32,5 +34,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findById(long id) {
         return userJpaRepository.findById(id).map(UserEntity::toModel);
+    }
+
+    @Override
+    public User getById(long id) {
+        return userJpaRepository.findById(id).map(UserEntity::toModel)
+                .orElseThrow(() -> new ResourceNotFoundException("Users", id));
     }
 }
